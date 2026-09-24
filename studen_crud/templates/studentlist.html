@@ -26,8 +26,7 @@
       <td>{{ user.name }}</td>
       <td>{{ user.email }}</td>
       <td>
-        <button type="button" class="btn btn-primary">View</button>
-      </td>
+        <a href="/student/detail/{{ user.id }}/" class="btn btn-primary">View</a></td>
     </tr>
     {% endfor %}
   </tbody>

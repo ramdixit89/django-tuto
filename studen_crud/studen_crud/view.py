@@ -17,5 +17,5 @@ def student_home(request):
 def student_list(request):
     return render(request, 'studentlist.html', context={'userData' : users})
 
-def student_detail(request):
-    return render(request, 'studentdetail.html')
+def student_detail(request, studentid):
+    return render(request, 'studentdetail.html', context={'student' : users[studentid-1]})
