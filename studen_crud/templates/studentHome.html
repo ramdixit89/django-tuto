@@ -1,9 +1,13 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Dynamic CSS loading happens here -->
-    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static current_css %}"> -->
+    <title>Document</title>
 </head>
 <body>
-      <h1>Hom page </h1>   
+    <a href="{% url 'home' %}?theme=light">Light page</a>
+    <a href="{% url 'home' %}?theme=dark">dark page</a>
 </body>
+</html>

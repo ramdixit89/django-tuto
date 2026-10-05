@@ -12,7 +12,7 @@ users = [
 
 
 def student_home(request):
-    theme = request.GET.get('theme', 'light')
+    theme = request.GET.get('theme', 'dark')
 
     if theme == 'dark':
         template_name = 'dark.html'
@@ -21,7 +21,7 @@ def student_home(request):
         template_name = 'light.html'
         current_css_theme = 'css/light.css'
 
-    return render(request, template_name,{'current_css' : current_css_theme})
+    return render(request, template_name, {'current_css' : current_css_theme})
 
 def student_list(request):
     return render(request, 'studentlist.html', context={'userData' : users})
