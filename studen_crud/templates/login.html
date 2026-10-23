@@ -1,0 +1,23 @@
+{% extends 'nav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="container w-50">
+        <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+        <label for="exampleFormControlInput" class="form-label mb-2">Password</label>
+        <input type="email" class="form-control" id="exampleFormControlInput" placeholder="********">
+        <button class="btn btn-success mt-5">Sign In</button>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
