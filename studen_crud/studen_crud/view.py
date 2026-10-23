@@ -10,7 +10,15 @@ users = [
     {'id' : 6, 'name': 'sodhi', 'email': 'sodhi@example.com'}
 ]
 
+def main_page(request):
+    return render(request, 'homePage.html')
 
+def login_page(request):
+    return render(request, 'login.html')
+
+def register_page(request):
+    return render(request, 'register.html')
+    
 def student_home(request):
     theme = request.GET.get('theme', 'dark')
 
