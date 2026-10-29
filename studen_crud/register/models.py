@@ -1,9 +1,14 @@
 from django.db import models
 
 # Create your models here.
+
 class User(models.Model):
-    full_name = models.CharField(max_length=100)
+    name = models.CharField()
     email = models.EmailField()
     course = models.CharField()
-    semester = models.CharField()
-    password = models.CharField(max_length=8)
+    semester = models.IntegerField()
+    password = models.CharField()
+
+    def _str_(self):
+        self.name
+
