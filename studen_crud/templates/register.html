@@ -10,21 +10,24 @@
 
 <body>
     {% block content %}
-    <div class="container w-50">
-        <label for="exampleFormControlInput" class="form-label mb-2">Full Name</label>
-        <input type="email" class="form-control" id="exampleFormControlInput" placeholder="Enter name">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for field in form %} 
+        <div class="container w-50">
+        <label  for="exampleFormControlInput" class="form-label mb-2">Full Name</label>
+        <input name="full_name" type="email" class="form-control" id="exampleFormControlInput" placeholder="Enter name">
         <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+        <input name="email" type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
         <div class="form-field">
             <label for="exampleFormControlSelect2" class="form-label">Select Course</label>
-            <select class="form-control" id="exampleFormControlSelect2">
+            <select name="course" class="form-control" id="exampleFormControlSelect2">
                 <option>Choose one…</option>
                 <option value="1">BCA</option>
                 <option value="2">BSc</option>
             </select>
             <div class="form-field">
                 <label for="exampleFormControlSelect2" class="form-label">Select Semester</label>
-                <select class="form-control" id="exampleFormControlSelect2">
+                <select name="semester" class="form-control" id="exampleFormControlSelect2">
                     <option>Choose one…</option>
                     <option value="1">1</option>
                     <option value="2">3</option>
@@ -33,9 +36,10 @@
             </div>
         </div>
         <label for="exampleFormControlInput" class="form-label mb-2">Password</label>
-        <input type="email" class="form-control" id="exampleFormControlInput" placeholder="********">
+        <input name="password" type="email" class="form-control" id="exampleFormControlInput" placeholder="********">
         <button class="btn btn-success mt-5">Sign Up</button>
     </div>
+    </form>
     {% endblock %}
 </body>
 
