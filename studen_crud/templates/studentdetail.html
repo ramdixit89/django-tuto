@@ -1,18 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
-<body>
+{% extends 'nav.html' %}
 
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"> name  {{ student.name }}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary"> email {{ student.email }}</h6>
-  </div>
+{% block content %}
+<div class="container mt-4 mb-5" style="max-width: 500px;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Student Profile</h5>
+            <span class="badge bg-light text-dark">ID: #{{ student.id }}</span>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Full Name:</strong>
+                    <span>{{ student.name }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Email Address:</strong>
+                    <span>{{ student.email }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Course:</strong>
+                    <span class="badge bg-info text-dark">{{ student.course|upper }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <strong>Semester:</strong>
+                    <span>Semester {{ student.semester }}</span>
+                </li>
+            </ul>
+            <a href="/student/list/" class="btn btn-outline-secondary w-100">&larr; Back to Students List</a>
+        </div>
+    </div>
 </div>
-</body>
-</html>
+{% endblock %}

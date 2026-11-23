@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar sm:navbar-expand bg-1 fg-2">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Student</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Student Portal</a>
             <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" aria-hidden="true"></span>
@@ -25,15 +25,14 @@
                 <div class="drawer-body">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'student_list' %}">Students</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'register' %}">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Service</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
-
                     </ul>
                 </div>
             </dialog>
@@ -42,10 +41,8 @@
     {% block content %}
     {% endblock %}
 
-
     <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

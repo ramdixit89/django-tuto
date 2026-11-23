@@ -1,36 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
-<body>
-    <h1>student list</h1>
-   
-    {{ userData }}
+{% extends 'nav.html' %}
 
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">S.No</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for user in userData %}
-    <tr>
-      <td>{{ forloop.counter }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>
-        <a href="/student/detail/{{ user.id }}/" class="btn btn-primary">View</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-</body>
-</html>
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Registered Students List</h2>
+        <a href="{% url 'register' %}" class="btn btn-success">+ Register New Student</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" style="width: 80px;">S.No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col" class="text-center" style="width: 120px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in userData %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td class="fw-bold">{{ student.name }}</td>
+                            <td>{{ student.email }}</td>
+                            <td><span class="badge bg-info text-dark">{{ student.course|upper }}</span></td>
+                            <td>Semester {{ student.semester }}</td>
+                            <td class="text-center">
+                                <a href="/student/detail/{{ student.id }}/" class="btn btn-sm btn-primary">View</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'student_delete' student.id %}" >Delete</a>
+                                <a href="{%url 'student_edit' student.id %}">Edit</a>
+                            </td>
+
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">
+                                <em>No students registered yet. <a href="{% url 'register' %}">Click here to register a student</a>.</em>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

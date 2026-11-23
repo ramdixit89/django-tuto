@@ -9,37 +9,73 @@
 </head>
 
 <body>
+
     {% block content %}
-    <form method="POST" action="">
-        {% csrf_token %}
-        {% for field in form %} 
-        <div class="container w-50">
-        <label  for="exampleFormControlInput" class="form-label mb-2">Full Name</label>
-        <input name="full_name" type="email" class="form-control" id="exampleFormControlInput" placeholder="Enter name">
-        <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
-        <input name="email" type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
-        <div class="form-field">
-            <label for="exampleFormControlSelect2" class="form-label">Select Course</label>
-            <select name="course" class="form-control" id="exampleFormControlSelect2">
-                <option>Choose one…</option>
-                <option value="1">BCA</option>
-                <option value="2">BSc</option>
-            </select>
-            <div class="form-field">
-                <label for="exampleFormControlSelect2" class="form-label">Select Semester</label>
-                <select name="semester" class="form-control" id="exampleFormControlSelect2">
-                    <option>Choose one…</option>
-                    <option value="1">1</option>
-                    <option value="2">3</option>
-                    <option value="3">5</option>
-                </select>
+    <div class="container mt-4 mb-5" style="max-width: 550px;">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0 text-center">{{ title }}</h4>
+            </div>
+            <div class="card-body p-4">
+                {% if messages %}
+                {% for message in messages %}
+                <div>{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+
+                <!-- 2. Registration Form -->
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <!-- Full Name -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Full Name</label>
+                        {{ form.name }}
+                        {% if form.name.error.0 %}
+                        <div>{{ form.name.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email Address</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <div>{{ form.email.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Course & Semester (Two Column Grid) -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Course</label>
+                            {{ form.course }}
+                            {% if form.course.errors %}
+                            <div>{{ form.course.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Semester</label>
+                            {{ form.semester }}
+                            {% if form.semester.errors %}
+                            <div>{{ form.semester.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Password</label>
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                        <div>{{ form.password.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 py-2 mt-3">Register Student</button>
+                </form>
             </div>
         </div>
-        <label for="exampleFormControlInput" class="form-label mb-2">Password</label>
-        <input name="password" type="email" class="form-control" id="exampleFormControlInput" placeholder="********">
-        <button class="btn btn-success mt-5">Sign Up</button>
     </div>
-    </form>
     {% endblock %}
 </body>
 

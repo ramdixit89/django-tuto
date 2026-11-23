@@ -1,0 +1,73 @@
+{% extends 'nav.html' %}
+{% block content %}
+<div class="container mt-4 mb-5" style="max-width: 550px;">
+    <div class="card shadow-sm">
+        <!-- Header -->
+        <div class="card-header bg-warning text-dark d-flex justify-content-between
+                align-items-center">
+            <h4 class="mb-0">{{ title }}</h4>
+            <a href="{% url 'student_list' %}" class="btn btn-sm btn-outline-dark">&larr; Back</a>
+        </div>
+        <div class="card-body p-4">
+            <!-- Flash Messages -->
+            {% if messages %}
+            Page 1
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}
+                      alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <form method="POST" action="">
+                {% csrf_token %}
+                <!-- Full Name -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Full Name</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                    <div class="text-danger small mt-1">{{ form.name.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Email Address</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <!-- Course & Semester -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Course</label>
+                        {{ form.course }}
+                        {% if form.course.errors %}
+                        <div class="text-danger small mt-1">{{ form.course.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Semester</label>
+                        {{ form.semester }}
+                        {% if form.semester.errors %}
+                        <div class="text-danger small mt-1">{{ form.semester.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Password</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                    <div class="text-danger small mt-1">{{ form.password.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-warning w-100 py-2 mt-3 fw-bold">
+                    Update Student
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
